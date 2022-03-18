@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# Memory Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An app created for The Odin Project using [React](https://reactjs.org/), [Tailwind](https://tailwindcss.com/) and [TMDB](https://www.themoviedb.org).
 
-## Available Scripts
+Live webpage [here]().
 
-In the project directory, you can run:
+## How to Play
 
-### `npm start`
+Simply click the START button to start the game.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+You begin at level 1 and you will see some cards showing some famous actors. The objective of the game is to train your memory by clicking a card only once, thus remembering which card you clicked. The game becomes harder and harder with first level showing 4 cards, second level 8 cards, 3rd level 12 cards, and so on.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Completing level 5 will make you a LIVING GOD of memory games, so all to look for!
 
-### `npm test`
+If you click a card twice on a level, then it's game over and you have to start again.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Your high score will show you the maximum streak you were on during the current session.
 
-### `npm run build`
+## Geek Corner
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+If you want do build the game yourself, just clone this repo and run "npm install" on the directory. For the app to work, you will need to create a API key for the [TMDB](https://www.themoviedb.org) website and save in the local environment (.env) with the name REACT_APP_TMDB_KEY.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The game is built with React and it uses a few components defined in the component folder. Nothing too complicated as this is a small game. The game engine is the game object supplied by a factory function in the ./APIs/game.js It exposes a few functions like getLevel, getScore getHighScore, getGameState, getItemsToDisplay, initGame, gameAction, subscribe. The key part is to subscribe a function that will be run by the game logic, when the game state or game data changes. The function will receive an object as an argument which you can use to update the app state accordingly.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+I use a react context to store the game object and the app state. I then pass a function to game.subscribe that basically updates the context data. You can subscribe more than one function. Just pass each function to game.subscribe.
