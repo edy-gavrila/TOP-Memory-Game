@@ -1,14 +1,14 @@
 import GameArea from "./Components/GameArea";
 import Header from "./Components/Header";
-import ScoreContextProvider from "./Contexts/ScoreContextProvider";
+import GameContextProvider from "./Contexts/GameContextProvider";
 
 function App() {
   return (
-    <div className="min-h-screen bg-violet-300">
-      <ScoreContextProvider>
+    <div className="min-h-screen flex-col bg-violet-300">
+      <GameContextProvider>
         <Header />
         <GameArea />
-      </ScoreContextProvider>
+      </GameContextProvider>
     </div>
   );
 }

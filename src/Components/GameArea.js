@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { getActorPictureList } from "../APIs/tmdb";
-import ActorCard from "./UI/ActorCard";
+import React, { useContext } from "react";
+
+import { GameContext } from "../Contexts/GameContext";
+import RunningGame from "./RunningGame";
+import GameOver from "./UI/GameOver";
+import StartGame from "./UI/StartGame";
 
 function GameArea() {
-  const [actorPictureList, setActorsPictureList] = useState([]);
-  useEffect(() => {
-    const getActorPictureListFromTmdb = async (page = 1) => {
-      try {
-        const data = await getActorPictureList(page);
-        setActorsPictureList(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getActorPictureListFromTmdb(1);
-  }, []);
-
-  const pictureCards = actorPictureList.map((picture) => {
-    return <ActorCard key={picture} imageSrc={picture} />;
-  });
-  return <div className="flex flex-wrap gap-2 p-4">{pictureCards}</div>;
+  const gameState = useContext(GameContext);
+  return (
+    <div>
+      {gameState.gameState === "initial" && <StartGame />}
+      {gameState.gameState === "running" && <RunningGame />}
+      {gameState.gameState === "over" && <GameOver />}
+    </div>
+  );
 }
 
 export default GameArea;

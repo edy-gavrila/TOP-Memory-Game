@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
-import { ScoreContext } from "../Contexts/ScoreContext";
+import { GameContext } from "../Contexts/GameContext";
 
 function Header() {
-  const { score, highScore, setHighScore, incrementScore, resetScore } =
-    useContext(ScoreContext);
+  const { score, highScore } = useContext(GameContext);
   return (
     <header className="w-full py-4 sm:px-4 bg-violet-800 text-white">
       <div className="container flex flex-col sm:flex-row items-center justify-between">
